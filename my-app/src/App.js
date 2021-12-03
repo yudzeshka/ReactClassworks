@@ -4,7 +4,7 @@ import Button from "./Button";
 import Count from "./Count";
 
 const MAX = 5;
-const MAX = -5;
+const MIN = -5;
 
 class App extends Component {
   constructor() {
@@ -43,7 +43,7 @@ class App extends Component {
           text="-"
           id="subtraction"
           onClick={this.handleClick}
-          disabled={value <= MIX}
+          disabled={value <= MIN}
         />
         <Count value={value} onChange={this.handleChange} max={MAX} min={MIN} />
         <Button

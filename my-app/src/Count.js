@@ -1,6 +1,8 @@
+import { Component } from "react";
+
 class Count extends Component {
   handleChange = (e) => {
-    const { onChange, mix, max } = this.props;
+    const { onChange, min, max } = this.props;
 
     if (e.target.value === "") {
       onChange(0);
@@ -16,20 +18,20 @@ class Count extends Component {
 
     const parsedValue = parseInt(e.target.value, 10);
 
-    if (Number.isNaN(parsedValue) || parsedValue > max || parsedValue < mix) {
+    if (Number.isNaN(parsedValue) || parsedValue > max || parsedValue < min) {
       alert(`Number should be between ${min} and ${max}.`);
       return;
     }
 
     onChange(parsedValue);
+  };
 
-    handleBlur = () => {
-      const { value, onChange } = this.props;
+  handleBlur = () => {
+    const { value, onChange } = this.props;
 
-      if (value === "" || value === "-") {
-        onChange(0);
-      }
-    };
+    if (value === "" || value === "-") {
+      onChange(0);
+    }
   };
 
   render() {
