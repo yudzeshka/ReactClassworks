@@ -25,11 +25,11 @@ class App extends Component {
     });
   };
 
-  handleReset() {
+  handleReset = () => {
     this.setState({
       value: 0,
     });
-  }
+  };
 
   handleChange = (newValue) => {
     this.setState({ value: newValue });
