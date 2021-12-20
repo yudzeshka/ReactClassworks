@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import * as Yup from 'yup';
-import { Formik, Form, Field } from 'formik';
+import * as Yup from "yup";
+import { Formik, Form, Field } from "formik";
 
-import FormInput from './FormInput';
-import FormCheckbox from './FormCheckbox';
+import FormInput from "./FormInput";
+import FormCheckbox from "./FormCheckbox";
 
 const LANGUAGES = [
-  { value: 'english', label: 'English' },
-  { value: 'russian', label: 'Russian' },
-  { value: 'belorussian', label: 'Belorussian' },
-  { value: 'polish', label: 'Polish' },
+  { value: "english", label: "English" },
+  { value: "russian", label: "Russian" },
+  { value: "belorussian", label: "Belorussian" },
+  { value: "polish", label: "Polish" },
 ];
 
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -20,35 +20,35 @@ export default class FormFormik extends Component {
     return (
       <Formik
         initialValues={{
-          username: '',
-          email: '',
-          password: '',
-          repeatPassword: '',
-          gender: 'female',
-          languages: ['russian'],
+          username: "",
+          email: "",
+          password: "",
+          repeatPassword: "",
+          gender: "female",
+          languages: ["russian"],
           termsAndConditions: false,
           country: [],
         }}
         onSubmit={(formValues) => alert(JSON.stringify(formValues))}
         validationSchema={Yup.object().shape({
           username: Yup.string()
-            .required('Name is required')
-            .max(20, 'Name should be less than 20 characters'),
+            .required("Name is required")
+            .max(20, "Name should be less than 20 characters"),
           email: Yup.string()
-            .email('Email should be in correct format')
-            .required('Email is required'),
+            .email("Email should be in correct format")
+            .required("Email is required"),
           password: Yup.string()
             .matches(
               passwordRegex,
-              'Password should be more than 8 characters and contain at least one number and one letter'
+              "Password should be more than 8 characters and contain at least one number and one letter"
             )
-            .required('Password is required'),
+            .required("Password is required"),
           repeatPassword: Yup.string().oneOf(
-            [Yup.ref('password')],
-            'Passwords should match'
+            [Yup.ref("password")],
+            "Passwords should match"
           ),
           termsAndConditions: Yup.boolean().isTrue(
-            'You should accept our terms and conditions'
+            "You should accept our terms and conditions"
           ),
         })}
       >
@@ -110,7 +110,9 @@ export default class FormFormik extends Component {
               label="I Agree with Terms and Conditions"
             />
 
-            <button type="submit" disabled={!isValid}>Submit</button>
+            <button type="submit" disabled={!isValid}>
+              Submit
+            </button>
           </Form>
         )}
       </Formik>
