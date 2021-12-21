@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import Image from "./Image";
-import Post from "../Post";
-import img from "../Img";
+
+import Header from "./Header";
+
 export default class Post extends Component {
   render() {
     const { post } = this.props;
-    return <Image src={src} alt={alt} />;
+    return (
+      <>
+        {" "}
+        <Header username={post.username} profileSrc={post.profileSrc}></Header>
+        <Image src={post.src} caption={post.caption} />;
+      </>
+    );
   }
 }

@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import Post from "./Post";
-import img from "./Img";
+import profileImg from "../Img/cat.jpg";
+import img from "../Img/photo_2021-12-20_20-40-30.jpg";
+
 export default class App extends Component {
   render() {
     const post = {
       src: img,
       caption: "cat",
-      username: "Katarinich",
+      username: "katarinich",
       profileSrc: profileImg,
     };
-    return <div></div>;
+    return <Post post={post} />;
   }
 }
