@@ -7,10 +7,26 @@ export default class App extends Component {
   render() {
     const post = {
       src: img,
-      caption: "cat",
+      caption: "Cat on Piano",
       username: "katarinich",
       profileSrc: profileImg,
+      likes: 11,
+      comments: [
+        { text: "Very nice cat", username: "mom" },
+        { text: "I like black cats", username: "freind" },
+        { text: "I hate cats", username: "hater" },
+        { text: "Very nice cat", username: "mom" },
+        { text: "I like black cats", username: "freind" },
+        { text: "I hate cats", username: "hater" },
+        { text: "Very nice cat", username: "mom" },
+        { text: "I like black cats", username: "freind" },
+        { text: "I hate cats", username: "hater" },
+      ],
     };
-    return <Post post={post} />;
+    return (
+      <div className="grid grid-cols-3 mx-auto max-w-screen-md ">
+        <Post post={post} />
+      </div>
+    );
   }
 }
