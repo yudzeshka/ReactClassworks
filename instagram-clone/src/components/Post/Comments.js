@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import AddCommentForm from "./AddCommentForm";
+import PropTypes from "prop-types";
 
 const COMMENTS_MIN_COUNT = 3;
 
@@ -18,8 +20,24 @@ export default class Comments extends Component {
   };
 
   render() {
-    const { comments } = this.props;
+    const { comments, commentInput, onAddComment, currentUser } = this.props;
     const { commentSlice } = this.state;
+
+    const currentUserComments = comments.filter(
+      (comment) => comment.username === currentUser.username
+    );
+    const lastCurrentUserComment = currentUserComments.length
+      ? currentUserComments[currentUserComments.length - 1]
+      : null;
+
+    const [currentUserComment, otherComments] = comments.reduce(() => {
+      if (currentComment.username === currentUser.username) {
+        result[0].push(currentComment);
+      } else {
+        result[1].push(currentComment);
+      }
+    }, [[], []]);
+
     return (
       <div className="p-4 pt-0">
         {comments.slice(0, commentSlice).map((comment) => (
@@ -30,16 +48,32 @@ export default class Comments extends Component {
             <span>{comment.text}</span>
           </p>
         ))}
-        {comments.length > 3 && commentSlice < comments.length && (
-          <button
-            type="button"
-            className="cursor-pointer text-gray-400"
-            onClick={this.handleViewMoreComments}
-          >
-            View more comments
-          </button>
-        )}
+        {comments.length > COMMENTS_MIN_COUNT &&
+          commentSlice < comments.length && (
+            <button
+              type="button"
+              className="cursor-pointer text-gray-400 mb-2"
+              onClick={this.handleViewMoreComments}
+            >
+              View more comments
+            </button>
+          )}
+        <AddCommentForm commentInput={commentInput} onSubmit={onAddComment} />
       </div>
     );
   }
 }
+
+Comments.propTypes = {
+  commentInput: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      username: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onAddComment: PropTypes.func.isRequired,
+  currentUser: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+  }).isRequired,
+};

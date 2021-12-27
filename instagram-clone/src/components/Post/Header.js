@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Header({ username, profileSrc }) {
   return (
@@ -14,3 +15,8 @@ export default function Header({ username, profileSrc }) {
     </div>
   );
 }
+
+Header.propTypes = {
+  username: PropTypes.string.isRequired,
+  profileSrc: PropTypes.string.isRequired,
+};
