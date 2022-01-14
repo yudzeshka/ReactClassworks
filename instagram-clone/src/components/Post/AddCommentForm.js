@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 export default class AddCommentForm extends Component {
@@ -5,34 +6,74 @@ export default class AddCommentForm extends Component {
     super(props);
     this.state = {
       comment: "",
+=======
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+export default class AddCommentForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      comment: '',
+>>>>>>> Stashed changes
     };
   }
 
   clearForm = () => {
     this.setState({
+<<<<<<< Updated upstream
       comment: "",
     });
   };
   handleSubmit = (e) => {
     e.preventDefault();
+=======
+      comment: '',
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+>>>>>>> Stashed changes
     const { comment } = this.state;
     const { onSubmit } = this.props;
 
     if (!comment.trim()) {
       return;
     }
+<<<<<<< Updated upstream
     onSubmit(comment);
     this.clearForm();
   };
+=======
+
+    onSubmit(comment);
+
+    this.clearForm();
+  };
+
+>>>>>>> Stashed changes
   handleCommentChange = (e) => {
     this.setState({
       comment: e.target.value,
     });
   };
+<<<<<<< Updated upstream
   render() {
     const { commentInput } = this.props;
     const { comment } = this.state;
     const isDisabled = !comment.trim();
+=======
+
+  render() {
+    const { commentInput } = this.props;
+    const { comment } = this.state;
+
+    const isDisabled = !comment.trim();
+
+>>>>>>> Stashed changes
     return (
       <form className="flex border-t" onSubmit={this.handleSubmit}>
         <input
@@ -47,9 +88,16 @@ export default class AddCommentForm extends Component {
 
         <button
           type="submit"
+<<<<<<< Updated upstream
           className={`text-sm text-blue-500 font-bold  ${
             isDisabled ? "opacity-25" : ""
           }`}
+=======
+          className={`text-sm text-blue-500 font-bold ${
+            isDisabled ? 'opacity-25' : ''
+          }`}
+          disabled={isDisabled}
+>>>>>>> Stashed changes
         >
           Submit
         </button>

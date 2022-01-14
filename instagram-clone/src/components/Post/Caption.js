@@ -1,5 +1,11 @@
+<<<<<<< Updated upstream
 import React from "react";
 import PropTypes from "prop-types";
+=======
+import React from 'react';
+import PropTypes from 'prop-types';
+
+>>>>>>> Stashed changes
 export default function Caption({ username, caption }) {
   return (
     <div className="p-4 pt-0">
@@ -10,7 +16,11 @@ export default function Caption({ username, caption }) {
 }
 
 Caption.defaultProps = {
+<<<<<<< Updated upstream
   caption: "",
+=======
+  caption: '',
+>>>>>>> Stashed changes
 };
 
 Caption.propTypes = {
