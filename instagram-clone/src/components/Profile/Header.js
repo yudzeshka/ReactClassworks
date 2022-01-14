@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import defaultAvatar from "../../Img/default_avatar.jpg";
+import defaultAvatar from '../../img/default_avatar.jpg';
 
 export default class Header extends Component {
   render() {

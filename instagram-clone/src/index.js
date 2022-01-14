@@ -2,14 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-<<<<<<< Updated upstream
-import App from "./components/App";
-import "./index.css";
-=======
 import App from './components/App';
 
 import './index.css';
->>>>>>> Stashed changes
 
 ReactDOM.render(
   <React.StrictMode>
