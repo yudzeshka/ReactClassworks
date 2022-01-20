@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
 
 import Post from './Post';
+import Login from './Login';
+import Header from './Header';
+import SignUp from './SignUp';
+import Profile from './Profile';
+
+import { auth } from '../firebase';
 
 import profileImg from '../img/profile.jpg';
 import img from '../img/photo_2021-12-20_20-38-55.jpg';
-import Profile from './Profile';
-import Login from './Login';
-import Header from './Header';
 
 const POST = {
   src: img,
@@ -34,18 +38,22 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      currentUser: { username: 'katarinich' },
-      user: {
-        username: 'katarinich',
-        profileSrc: profileImg,
-        fullName: 'Katarina Chirich',
-        postCount: 10,
-        followersCount: 148,
-        followingCount: 1,
-        posts: [...new Array(10)].map(() => POST),
-      },
+      currentUser: null,
+      user: null,
       post: POST,
     };
+  }
+
+  componentDidMount() {
+    onAuthStateChanged(auth, (user) => {
+      this.setState({
+        currentUser: user,
+      });
+    });
+  }
+
+  setUser = (user) => {
+    this.setState({ user });
   }
 
   handleAddComment = (text) => {
@@ -65,11 +73,18 @@ export default class App extends Component {
     return (
       <Router>
         <div className="grid grid-cols-3 mx-auto max-w-screen-md">
-          <Header />
+          <Header currentUser={currentUser} />
 
           <Routes>
-            <Route path="login" element={<Login />} />
-            <Route path="/p/:username" element={<Profile user={user} />} />
+            <Route
+              path="/login"
+              element={<Login currentUser={currentUser} />}
+            />
+            <Route
+              path="/sign-up"
+              element={<SignUp currentUser={currentUser} />}
+            />
+            <Route path="/p/:username" element={<Profile user={user} setUser={this.setUser} />} />
             <Route
               path="/p/:username/:postId"
               element={
